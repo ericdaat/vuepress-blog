@@ -6,7 +6,6 @@
         </h2>
         
         <p>{{ post.frontmatter.description }}</p>
-
         <p><router-link :to="post.path">Read more</router-link></p>
     </div>
 </div>

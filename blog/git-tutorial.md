@@ -121,7 +121,7 @@ git checkout hi.py
 
 ### A visual recap
 
-![git_basic_usage](images/git-stages.png)
+![git_basic_usage](/git-stages.png)
 
 *Source: [marklodato.github.io](https://marklodato.github.io/visual-git-guide/index-en.html)*
 
@@ -134,7 +134,7 @@ git checkout hi.py
 
 Co-workers work on the same project and can edit the same files simultaneously. Updates are pushed on the distant repository, and pulled from the production server.
 
-<img src="images/git-servers.png" height="180px"/>
+<img src="git-servers.png" height="180px"/>
 
 NEVER EVER commit, push or edit anything on the production server.
 
@@ -143,7 +143,7 @@ NEVER EVER commit, push or edit anything on the production server.
 
 Branches allow people to work on separate tasks without messing with the master branch code. It is useful to experiment, or add functionalities. Branches can start from the master branch, or from another branch.
 
-<img src="images/git-branches.png"
+<img src="git-branches.png"
      height="250px">
 
 *Source : [backlogtool.com](https://backlogtool.com/git-tutorial/en/stepup/stepup1_5.html)*

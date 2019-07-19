@@ -15,6 +15,8 @@ footer: Copyright © 2019 Eric Daoud Attoyan
 
 # About
 
+<font-awesome-icon icon="coffee"></font-awesome-icon>
+
 Hi there! I am Eric, a Data Scientist and Full Stack Developer from France.
 
 My background is computer science. I hold a master’s degree in General Engineering from ECAM Lyon, and an advanced master in Software Engineering from Centrale Paris.

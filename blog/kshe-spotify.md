@@ -5,7 +5,6 @@ description:
     This post shows how to scrap a list of songs from the KSHE 95 radio website and upload them to a Spotify playlist using the Spotify Web API. I used Python programming language along with Beautiful Soup for scraping and Flask for deploying the app.
 ---
 
-
 As a big fan of Classic Rock living in France, I am very frustrated by the lack of good classic rock radio we have. I spent four months in St Louis, MO, and I had the chance to listen to [KSHE 95](http://www.kshe95.com/) every day, playing some of my favorite classic rock tunes. Unfortunately, I can't listen to this radio in France as they block it. Fortunately, their website shows the [songs that have been playing earlier](http://player.listenlive.co/20101/en/songhistory). I decided to scrap this page, make myself an empty [Spotify playlist](https://open.spotify.com/user/ericda/playlist/3BCcE8T945z1MnfPWkFsfX), and automatically add in the KSHE tracks.
 
 So far, I am able to:
@@ -26,11 +25,11 @@ Feel free to ping me if you want to help. You can have a look at the code on my 
 
 If you visit [KSHE 95 song history page](http://player.listenlive.co/20101/en/songhistory), you'll find a list of the 10 previously played songs. 
 
-<img src="/images/kshe-song-history.png" width=400/>
+<img src="/kshe-song-history.png"/>
 
 By inspecting the page using your favorite browser, you should see the list of these songs within a Javascript variable. 
 
-<img src="/images/kshe-song-history-source.png" width=600px/>
+<img src="/kshe-song-history-source.png"/>
 
 I am very new to webscraping, but Python libraries like [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) make this really easy and straightforward. I just had to write the following lines to get the song list I wanted.
 
@@ -124,7 +123,7 @@ I had some trouble figuring this part at first, but it's not that big of a deal 
 
 For our purpose, we will need *Authorization Code Flow* because we want to modify our own playlist. Let's see how we do this. The following picture taken from Spotify documentation explains it well how the authorization code flow works. 
 
-<img src="images/spotify-auth.png" width=600px/>
+<img src="/spotify-auth.png"/>
 
 What happens is:
 
@@ -276,4 +275,4 @@ def add_tracks_to_playlist(self, track_uris, playlist_uri):
 
 And that's about it ! You can have a look at my Github repository for the full code. My playlist is public and available on Spotify [here](https://open.spotify.com/user/ericda/playlist/3BCcE8T945z1MnfPWkFsfX). Note that my application is not running on its own yet, which means the playlist is not uploaded regularly. I will look at it as soon as I can find some time. Meanwhile feel free to let me know if this was useful, or don't hesitate to ping me on Github if you want to help !
 
-<img src="/images/kshe-spotify-playlist.png" width=600px/>
+<img src="/kshe-spotify-playlist.png"/>

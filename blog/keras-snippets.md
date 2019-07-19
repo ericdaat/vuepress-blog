@@ -37,7 +37,7 @@ model.fit(X, y, epochs=5)
 model.predict(np.random.rand(1, 10))
 ```
 
-![regression](images/keras_nn/regression.png)
+![regression](/keras_nn/regression.png)
 
 
 ## Binary Classification
@@ -64,7 +64,7 @@ model.fit(X, y, epochs=5)
 model.predict(np.random.rand(1, 10))
 ```
 
-![binary](images/keras_nn/binary_classifier.png)
+![binary](/keras_nn/binary_classifier.png)
 
 
 ## Multiclass Classification
@@ -94,7 +94,7 @@ model.fit(X, y, epochs=5)
 model.predict(np.random.rand(1, 10))
 ```
 
-![multiclass](images/keras_nn/multiclass_classifier.png)
+![multiclass](/keras_nn/multiclass_classifier.png)
 
 
 ## Embeddings
@@ -128,7 +128,7 @@ model.fit(X, y, epochs=5)
 model.predict(np.random.rand(1, 10))
 ```
 
-![embeddings](images/keras_nn/embeddings_classifier.png)
+![embeddings](/keras_nn/embeddings_classifier.png)
 
 
 ## Embeddings with the functional API
@@ -161,7 +161,7 @@ model.fit(X, y, epochs=5)
 model.predict(np.random.rand(1, 10))
 ```
 
-![embeddings_functional](images/keras_nn/embeddings_classifier_functional.png)
+![embeddings_functional](/keras_nn/embeddings_classifier_functional.png)
 
 
 ## Handling multiple inputs
@@ -203,7 +203,7 @@ model.predict([np.random.rand(1, 10),
                np.random.rand(1, 10)])
 ```
 
-![embeddings_functional](images/keras_nn/multi_embeddings_classifier_functional.png)
+![embeddings_functional](/keras_nn/multi_embeddings_classifier_functional.png)
 
 
 ## Shared Embeddings
@@ -242,7 +242,7 @@ model.compile('sgd', 'sparse_categorical_crossentropy')
 plot_model(model, to_file='shared_embeddings_averaged_dot.png', show_shapes=True)
 ```
 
-![shared_embeddings](images/keras_nn/shared_embeddings.png)
+![shared_embeddings](/keras_nn/shared_embeddings.png)
 
 
 # Callbacks

@@ -73,7 +73,29 @@ Now CircleCI will login to you AWS account with the user you created, and it wil
 
 Finally, you'll need to add this configuration file to your Github repository, under `.circleci/config.yml`:
 
-<!-- <script src="https://gist.github.com/ericdaat/2a91569f770a479ee1f02596ef94be56.js"></script> -->
+``` bash
+version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@1.0.6
+
+jobs:
+  build:
+    docker:
+      - image: 'circleci/python:latest'
+
+    steps:
+      - checkout
+      - aws-s3/sync:
+          from: .
+          to: 's3://your-bucket'
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400" \
+            --exclude ".git/*" \
+            --exclude ".gitignore" \
+            --exclude ".circleci/*" \
+          overwrite: true
+```
 
 Adapt this configuration file to your needs, by changing the S3 bucket url, and modify the files to exclude by the sync command.
 

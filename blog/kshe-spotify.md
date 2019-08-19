@@ -5,6 +5,8 @@ description:
     This post shows how to scrap a list of songs from the KSHE 95 radio website and upload them to a Spotify playlist using the Spotify Web API. I used Python programming language along with Beautiful Soup for scraping and Flask for deploying the app.
 ---
 
+# From web radio website to Spotify Playlist
+
 As a big fan of Classic Rock living in France, I am very frustrated by the lack of good classic rock radio we have. I spent four months in St Louis, MO, and I had the chance to listen to [KSHE 95](http://www.kshe95.com/) every day, playing some of my favorite classic rock tunes. Unfortunately, I can't listen to this radio in France as they block it. Fortunately, their website shows the [songs that have been playing earlier](http://player.listenlive.co/20101/en/songhistory). I decided to scrap this page, make myself an empty [Spotify playlist](https://open.spotify.com/user/ericda/playlist/3BCcE8T945z1MnfPWkFsfX), and automatically add in the KSHE tracks.
 
 So far, I am able to:
@@ -21,13 +23,13 @@ My next steps include:
 Feel free to ping me if you want to help. You can have a look at the code on my [Github repository](https://github.com/ericdaat/kshe-to-spotify).
 
 
-# Scraping KSHE 95 song history
+## Scraping KSHE 95 song history
 
-If you visit [KSHE 95 song history page](http://player.listenlive.co/20101/en/songhistory), you'll find a list of the 10 previously played songs. 
+If you visit [KSHE 95 song history page](http://player.listenlive.co/20101/en/songhistory), you'll find a list of the 10 previously played songs.
 
 <img src="/kshe-song-history.png"/>
 
-By inspecting the page using your favorite browser, you should see the list of these songs within a Javascript variable. 
+By inspecting the page using your favorite browser, you should see the list of these songs within a Javascript variable.
 
 <img src="/kshe-song-history-source.png"/>
 
@@ -57,78 +59,78 @@ This would return a json that looks like the following.
 ``` json
 [
   {
-    "artist": "JOURNEY", 
-    "timestamp": 1502900650000, 
+    "artist": "JOURNEY",
+    "timestamp": 1502900650000,
     "title": "LOVIN',TOUCHIN'/CITY OF THE ANGELS"
-  }, 
+  },
   {
-    "artist": "DOORS", 
-    "timestamp": 1502901058000, 
+    "artist": "DOORS",
+    "timestamp": 1502901058000,
     "title": "BREAK ON THROUGH"
-  }, 
+  },
   {
-    "artist": "VAN HALEN", 
-    "timestamp": 1502901792000, 
+    "artist": "VAN HALEN",
+    "timestamp": 1502901792000,
     "title": "JUMP"
-  }, 
+  },
   {
-    "artist": "JOE WALSH", 
-    "timestamp": 1502902038000, 
+    "artist": "JOE WALSH",
+    "timestamp": 1502902038000,
     "title": "LIFE'S BEEN GOOD"
-  }, 
+  },
   {
-    "artist": "SOUNDGARDEN", 
-    "timestamp": 1502902593000, 
+    "artist": "SOUNDGARDEN",
+    "timestamp": 1502902593000,
     "title": "SPOONMAN"
-  }, 
+  },
   {
-    "artist": "STYX", 
-    "timestamp": 1502903312000, 
+    "artist": "STYX",
+    "timestamp": 1502903312000,
     "title": "COME SAIL AWAY"
-  }, 
+  },
   {
-    "artist": "CHEAP TRICK", 
-    "timestamp": 1502903798000, 
+    "artist": "CHEAP TRICK",
+    "timestamp": 1502903798000,
     "title": "LONG TIME COMING"
-  }, 
+  },
   {
-    "artist": "DEF LEPPARD", 
-    "timestamp": 1502903995000, 
+    "artist": "DEF LEPPARD",
+    "timestamp": 1502903995000,
     "title": "BRINGIN' ON THE HEARTBREAK"
-  }, 
+  },
   {
-    "artist": "BLACK SABBATH", 
-    "timestamp": 1502904272000, 
+    "artist": "BLACK SABBATH",
+    "timestamp": 1502904272000,
     "title": "PARANOID"
-  }, 
+  },
   {
-    "artist": "MONTROSE", 
-    "timestamp": 1502904437000, 
+    "artist": "MONTROSE",
+    "timestamp": 1502904437000,
     "title": "ROCK CANDY"
   }
 ]
 ```
 
-# Uploading the songs to a Spotify Playlist
+## Uploading the songs to a Spotify Playlist
 
 During this part, we are going to use the [Spotify Web API](https://developer.spotify.com/web-api/). I found the API very straightforward and easy to deal with. The documentation is clear and they show a lot of examples that help. You will need to setup a Developer account and register an Application. This will provide you credentials that you will need for the rest of this post.
 
 
-## Authorization
+### Authorization
 
 I had some trouble figuring this part at first, but it's not that big of a deal once you understand the logic behind it. The [Spotify documentation](https://developer.spotify.com/web-api/authorization-guide/) explains it really well, but I will do a little recap here. There is basically three ways you can authenticate, which will give you an access token you will send within your HTTP requests. I only tried two out of three:
 
  - Authorization Code Flow: will give you a user access token that will enable you to retrieve some personal informations, as well as modifying your playlists, library, etc ...
  - Client Credentials: will only let you retrieve public informations about artists, tracks, albums, but nothing involving user's data.
 
-For our purpose, we will need *Authorization Code Flow* because we want to modify our own playlist. Let's see how we do this. The following picture taken from Spotify documentation explains it well how the authorization code flow works. 
+For our purpose, we will need *Authorization Code Flow* because we want to modify our own playlist. Let's see how we do this. The following picture taken from Spotify documentation explains it well how the authorization code flow works.
 
 <img src="/spotify-auth.png"/>
 
 What happens is:
 
  - We need a web application (can run on *localhost*) from where we will send an authentication request, using a simple HTTP *GET* method along with some credentials and a *redirect-uri* (our web application's url).
- - Spotify will prompt the user to login, and will redirect to the *redirect-uri* we passed along with an *authorization-code* within the request. 
+ - Spotify will prompt the user to login, and will redirect to the *redirect-uri* we passed along with an *authorization-code* within the request.
  - We exchange this code we received to a token using an HTTP *POST* request.
  - From now on, we can use the Spotify API with this token we stored. It will be valid for 3600 seconds and can be refreshed when needed.
 
@@ -171,7 +173,7 @@ def _client_credentials_authentication(self, authorization_code, redirect_uri):
 
 And the Flask app code is the following:
 
-``` python 
+``` python
 @app.route('/auth')
 def auth():
     """ Redirects to the Spotify login form
@@ -183,7 +185,7 @@ def auth():
 def callback():
     """ Called by the Spotify API if login is succesful, exchanges
     authorization code in favor of an access token.
-    Returns a json response containing the access token so 
+    Returns a json response containing the access token so
     we can store it within our application.
     """
     response = api._client_credentials_authentication(
@@ -208,7 +210,7 @@ My Flask application runs on ```localhost:9999```. When I registered my Spotify 
 Note: The few lines code I showed above is just a snippet that won't work as is since I am using classes and all. Please have a look [here](https://github.com/ericdaat/kshe-to-spotify/blob/master/flask-server/application/spotify_api.py) for the full Spotify API code, and [here](https://github.com/ericdaat/kshe-to-spotify/blob/master/flask-server/application/app.py) for the full Flask API code.
 
 
-## Searching for songs
+### Searching for songs
 
 Now that we are authenticated, let's have some fun with the Spotify Web API.
 
@@ -234,7 +236,7 @@ def search_track(self, track_name, artist_name, limit=1):
     except:
         logging.warning(
             'could not find track {0} from {1}'.format(
-                track_name, 
+                track_name,
                 artist_name
             )
         )
@@ -253,7 +255,7 @@ def search_track(self, track_name, artist_name, limit=1):
 ```
 
 
-## Adding songs to playlist
+### Adding songs to playlist
 
 Now we simply take all the *spotify_uri* fields from the previous json, and call the following function that will update the playlist with our new songs. Note that this won't ignore duplicates. To do so, we will need to manually filter out the tracks that are already existing within the playlist.
 
@@ -271,7 +273,7 @@ def add_tracks_to_playlist(self, track_uris, playlist_uri):
         headers={'Authorization': 'Bearer {0}'.format(self._access_token)},
         data=json.dumps({'uris': track_uris})
     ).json()
-``` 
+```
 
 And that's about it ! You can have a look at my Github repository for the full code. My playlist is public and available on Spotify [here](https://open.spotify.com/user/ericda/playlist/3BCcE8T945z1MnfPWkFsfX). Note that my application is not running on its own yet, which means the playlist is not uploaded regularly. I will look at it as soon as I can find some time. Meanwhile feel free to let me know if this was useful, or don't hesitate to ping me on Github if you want to help !
 

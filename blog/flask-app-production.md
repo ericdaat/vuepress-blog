@@ -5,9 +5,9 @@ description:
     In this post we are going to see how we can efficiently deploy a web application powered by Flask (a Python framework) to production. We won't code a complex application, actually we will just stick to the Flask Hello World example.
 ---
 
+# Deploying a Python Flask application to production
 
 In this post we are going to see how we can efficiently deploy a web application powered by Flask (a Python framework) to production. We won't code a complex application, actually we will just stick to the Flask Hello World example.
-
 
 ## Basic Flask application
 If you've never heard of Flask before, I recommend you to visit its [website](http://flask.pocoo.org/) and read about it.
@@ -35,7 +35,6 @@ if __name__ == '__main__':
 
 Now run ```python main.py``` and your app should be visible in your browser at ```localhost:5000```.
 
-
 ## WSGI server
 So far we have a working application, but it won't be enough to serve a production environment. Python applications can't be directly deployed in a webserver, because python is not a web compatible language like Javascript or PHP for instance. Hence, we need an additional layer: a WSGI server.
 
@@ -56,7 +55,6 @@ die-on-term = true
 ```
 
 Now we can run the app with ```uwsgi wsgi.ini```. With such configuration, our Flask application will be hosted on 2 processes. This is an arbiratry number we set, but you can increase it either manually or automatically if you need to handle more trafic. The server will respond on ```0.0.0.0:9000```, which means that every client on the local network will be able to access the app on port 9000 using the HTTP protocol. Check that you can still see your app at ```localhost:9000```. You should also be able to see it from another device connected to the same network at ```<your-ip>:9000```.
-
 
 ## Putting uWSGI behing NGINX reverse proxy
 I like to run uWSGI behind a reverse proxy such as NGINX. This is fairly easy with this configuration file:

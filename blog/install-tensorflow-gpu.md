@@ -5,6 +5,8 @@ description:
     Lately I spent some time using Deep Learning and configuring Linux servers with GPUs so the models train faster. In this short blog post I am going to list all what you have to follow in order to properly install the nvidia drivers, cuda, and other tools you'll need before running Tensorflow (or Keras) with GPU support. Let's get to it !
 ---
 
+# Installing Tensorflow with GPU support on Linux
+
 Lately I spent some time using Deep Learning and configuring Linux servers with GPUs so the models train faster. In this short blog post I am going to list all what you have to follow in order to properly install the nvidia drivers, cuda, and other tools you'll need before running Tensorflow (or Keras) with GPU support.
 
 Note that this tutorial can work either on Ubuntu or Debian. This tutorial will install `tensorflow-gpu 1.12` which
@@ -16,7 +18,7 @@ Tensorflow GPU needs the following softwares:
 - CUDA® Toolkit (TensorFlow supports CUDA 9.0)
 - cuDNN SDK (>= 7.2)
 
-# Installing on Ubuntu
+## Installing on Ubuntu
 
 Here is a complete shell script showing the different steps to install `tensorflow-gpu`:
 
@@ -83,8 +85,7 @@ pip install tensorflow-gpu;
 python -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"
 ```
 
-
-# Docker Image
+## Docker Image
 
 If you are familiar with [Docker](https://www.docker.com/), I'd recommend you have a look at the [Tensorflow Docker Image](https://hub.docker.com/r/tensorflow/tensorflow/). It's already configured with the latest drivers and can run on CPU or GPU.
 
@@ -94,7 +95,7 @@ If you're not familiar with Docker, you should definitely learn using it. Here a
 - [Docker official website](https://www.docker.com/)
 - [Docker getting started guide](https://docs.docker.com/get-started/)
 
-## Install Keras on top of Tensorflow
+### Install Keras on top of Tensorflow
 
 This step is not required, and some people probably prefer using Tensorflow directly with no abstraction layer on top of it. I personally started doing Deep Learning with Keras on top of Tensorflow, because it provided a simpler API, and I find it really easy and fast to build models.
 Keras was build by [François Chollet](https://twitter.com/fchollet?lang=en), and since he is now working for Google, Keras is very well integrated with Tensorflow.

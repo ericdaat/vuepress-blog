@@ -5,6 +5,8 @@ description:
     A short introduction and tutorial to Git, the versionning tool created by Linus Torvalds.
 ---
 
+# An introduction to Git
+
 ## Some History
 
 Git was created by Linus Torvalds in 2005 for development of the Linux kernel,
@@ -19,6 +21,7 @@ The name "git" was given by Linus Torvalds when he wrote the very first version.
 *Source: [Wikipedia](https://en.wikipedia.org/wiki/Git)*
 
 ## First Steps
+
 ### Install git
 
 ``` bash
@@ -125,7 +128,6 @@ git checkout hi.py
 
 *Source: [marklodato.github.io](https://marklodato.github.io/visual-git-guide/index-en.html)*
 
-
 ## Collaborating with other people
 
 ### Common configuration
@@ -138,7 +140,6 @@ Co-workers work on the same project and can edit the same files simultaneously. 
 
 NEVER EVER commit, push or edit anything on the production server.
 
-
 ### Branches
 
 Branches allow people to work on separate tasks without messing with the master branch code. It is useful to experiment, or add functionalities. Branches can start from the master branch, or from another branch.
@@ -147,7 +148,6 @@ Branches allow people to work on separate tasks without messing with the master 
      height="250px">
 
 *Source : [backlogtool.com](https://backlogtool.com/git-tutorial/en/stepup/stepup1_5.html)*
-
 
 Check branches within local repository
 
@@ -178,7 +178,6 @@ git branch -d awesome-feature
 When we are finished working on our feature-branch, we must check for conflicts before pushing to master. To do so, pull the master branch into your branch, and fix your conflicts locally.
 
 When all the conflicts are resolved, push again, *still on your branch*, to the remote repository. Then, make a pull request, that will eventually get merged on the master branch by the repository administrator.
-
 
 ## More useful tools
 
@@ -213,7 +212,6 @@ This tells git to never track `.pyc` or `.csv` files, because who needs to ?
 
 You can also ignore entire directories. You should avoid using `git add *` if you're not sure you're ignoring unnecessary files.
 
-
 ### Remove files on the repository
 
 What if you no longer want to track something ?
@@ -229,9 +227,9 @@ git rm --cached go_away.py # will only delete on the remote repository
 ### Versioning configuration files or critical files
 
 Sometimes you want to track files that contain passwords, or configuration
-variables.  
+variables.
 Those files are likely to change independently from the code, so
-you don't want to commit every single change in those.  
+you don't want to commit every single change in those.
 They might also
 contain sensitive information that you don't want to store within the
 repository.
@@ -252,11 +250,10 @@ If you are refering to a conf file named `variables.env`, name you dist file
 
 Every repository should have a decent README.md file, explaining what it is
 about, and how to configure and install the dependencies to start the
-application.  
+application.
 This file is written using the *Markdown* syntax. You can read about it and
 have look at this [cheat
 sheet](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf) to get
 started.
-
 
 Go ahead and do this tutorial if you have 15 minutes to spare: [try.github.io](https://try.github.io/levels/1/challenges/1)

@@ -5,15 +5,16 @@ description:
     I started to use Keras for Deep Learning months ago, and as I was using it, I thought I should make a memo of all the cool features and network architectures I was using. This post aims at sharing some snippets I have found useful, so I can reuse them later. Maybe it will be useful to you as well !
 ---
 
+# Some Keras snippets
 
 I started to use Keras for Deep Learning months ago, and as I was using it, I thought I should make a memo of all the cool features and network architectures I was using. This post aims at sharing some snippets I have found useful, so I can reuse them later. Maybe it will be useful to you as well !
 
 
-# Networks example
+## Networks example
 
 Let's start with some networks example. Those are really similar to the examples you'd find in the [Keras Docs](https://keras.io/getting-started/sequential-model-guide/), but I added a few things here and there to better understand what they do.
 
-## Regression
+### Regression
 
 ``` python
 from keras.models import Sequential
@@ -40,7 +41,7 @@ model.predict(np.random.rand(1, 10))
 ![regression](/keras_nn/regression.png)
 
 
-## Binary Classification
+### Binary Classification
 
 ``` python
 from keras.models import Sequential
@@ -67,7 +68,7 @@ model.predict(np.random.rand(1, 10))
 ![binary](/keras_nn/binary_classifier.png)
 
 
-## Multiclass Classification
+### Multiclass Classification
 
 ``` python
 from keras.models import Sequential
@@ -97,7 +98,7 @@ model.predict(np.random.rand(1, 10))
 ![multiclass](/keras_nn/multiclass_classifier.png)
 
 
-## Embeddings
+### Embeddings
 
 ``` python
 from keras.models import Sequential
@@ -131,7 +132,7 @@ model.predict(np.random.rand(1, 10))
 ![embeddings](/keras_nn/embeddings_classifier.png)
 
 
-## Embeddings with the functional API
+### Embeddings with the functional API
 
 
 ``` python
@@ -164,7 +165,7 @@ model.predict(np.random.rand(1, 10))
 ![embeddings_functional](/keras_nn/embeddings_classifier_functional.png)
 
 
-## Handling multiple inputs
+### Handling multiple inputs
 
 ``` python
 from keras.models import Model
@@ -206,7 +207,7 @@ model.predict([np.random.rand(1, 10),
 ![embeddings_functional](/keras_nn/multi_embeddings_classifier_functional.png)
 
 
-## Shared Embeddings
+### Shared Embeddings
 
 ``` python
 from keras.models import Model
@@ -245,7 +246,7 @@ plot_model(model, to_file='shared_embeddings_averaged_dot.png', show_shapes=True
 ![shared_embeddings](/keras_nn/shared_embeddings.png)
 
 
-# Callbacks
+## Callbacks
 
 Keras has many awesome callbacks that can be used during training. You can find them in the docs and I won't cover them all here. The one I recently discovered and particularly liked is Tensorboard. I am not very familiar with Tensorflow yet, but I love the fact that Tensorboard works with Keras. You can visualize how your model trains, your embeddings, and much more.
 

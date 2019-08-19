@@ -5,17 +5,22 @@ description:
     A tutorial on how to get started with Docker.
 ---
 
+# An introduction to Docker
+
 This post is a short tutorial to Docker. We will first talk about what Docker is and how it differs fromw to get started and run your first container.
 
-# Introduction
-## What is Docker ?
+## Introduction
+
+### What is Docker?
+
 > “Docker containers wrap a piece of software in a complete filesystem that
 contains everything needed to run: code, runtime, system tools, system libraries
 – anything that can be installed on a server. This guarantees that the software
 will always run the same, regardless of its environment.”
 *Source: [Docker Website](https://www.docker.com/what-docker )*
 
-## Advantages
+### Advantages
+
 Docker has some of the following advantages:
 
  - Lightweight
@@ -30,7 +35,7 @@ Docker has some of the following advantages:
  - Secure
     * Containers isolate applications from one another
 
-## Virtual Machines vs. Containers
+### Virtual Machines vs. Containers
 
  - Virtual Machines include the application, necessary binaries and libraries and
 entire guest OS
@@ -39,7 +44,7 @@ entire guest OS
 
 ![vms-vs-containers](https://www.docker.com/sites/default/files/containers-vms-together%402x.png)
 
-# Installation
+## Installation
 You will need to do 3 things:
 
  - [Install Docker Engine](https://docs.docker.com/engine/installation/)
@@ -94,7 +99,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
 
-# First steps
+## First steps
 
 Let's get started and run our first container. A container runs from an image, just like an object is instanciated from an image in Object Oriented Programming. This means that before running a container, we must build or download an existing image.
 
@@ -127,7 +132,7 @@ docker rm -f <container-id> # force remove a container
 docker rmi <image-id> # removes a built image
 ```
 
-# Running your first container
+## Running your first container
 Let's run an apache webserver, using the [Apache HTTP](https://hub.docker.com/r/_/httpd/) image.
 
 ``` bash
@@ -149,7 +154,7 @@ Here, we asked docker to run an image called *my_image* with the following optio
 
 With such a configuration, you can open a web browser and visit *localhost*. This will display the container's apache web server content.
 
-## Attaching volumes
+### Attaching volumes
 Let's say we created a very cool static website in HTML/CSS, and we stored it in our *./mywebsite* local directory. So far our apache container only displays the defaut *index.html* file. How can we pass the container the awesome website we built ? There are several options, including:
 
  - Copy the content from the host to the container when building the image. This means that the data will be stored within the image. If you save the image and pull it somewhere, you will have a copy of the data with it. If you delete the container, you delete the data. If you want to launch the same container several times, they will all have a distinct copy of the data.
@@ -170,7 +175,7 @@ docker run -d -p 80:80 -v ./mywebsite/:/usr/local/apache2/htdocs/ httpd
 
 Voila! Your container should now be running an apache web server in detached mode. And since we mapped the volume containing our awesome website, what you see on *localhost* is exactly what we have under the local *./mywebsite* directory.
 
-## Docker Compose
+### Docker Compose
 
 Often, you will need to build and run many different containers, and using the previously seen commands for each container can become very dull. In this section we will introduce Docker Compose, which is a very handy tool for defining and running multiple containers from a YAML configuration file. Here is how this file might look like for the apache webserver we had before.
 
@@ -185,7 +190,7 @@ services:
     - ./mywebsite/:/usr/local/apache2/htdocs/
 ```
 
-## Linking containers
+### Linking containers
 Now imagine you are running a web application in a container, and you need access to various services such as a relational database and a cache server. These three services can be run in different containers talking to each others via links. You might notice the *expose* keyword. Containers by default have all their ports closed. We previously seen that we could map a container's port to the host by using *ports*. Thanks to *expose*, we tell a container to open its port to other containers. Exposing a container's port does not make it accessible from the host.
 
 ``` yaml

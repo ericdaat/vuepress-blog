@@ -5,6 +5,8 @@ description:
     In this article, we are going to demonstrate how to build a simple text classifier for larger than RAM datasets. This approach is called Out of Core Learning, and many python Machine Learning librairies make this very easy to implement. For this example I used reviews from the Yelp Dataset Challenge and Python scikit-learn.
 ---
 
+# Out of core text classification with Scikit Learn
+
 ## The Dataset
 
 First, download the dataset from the [Yelp website](https://www.yelp.com/dataset/challenge). Once you're done, we are going to work with the the reviews file. It contains one Json per row, and I like to use the [Python Pandas](https://pandas.pydata.org/) library to read datasets.
